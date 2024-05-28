@@ -117,7 +117,7 @@ function fixtures_generate_data(  string  $type               ,
     $max_length = mt_rand($min, $max);
     for ($i = 0; $i < $max_length; $i++)
     {
-      $text .= ($i) ? '\r\n\r\n' : '';
+      $text .= ($i) ? PHP_EOL.PHP_EOL : '';
       $text .= ucfirst(fixtures_lorem_ipsum(mt_rand(100, 400), 1)).'.';
     }
     return $text;

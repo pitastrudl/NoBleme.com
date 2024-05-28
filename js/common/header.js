@@ -5,10 +5,10 @@
 /*  user_login_attempt              Attempts to log in a guest.                                                      */
 /*  user_login_attempt_process      Process a finished login attempt.                                                */
 /*                                                                                                                   */
-/*  user_logout                     Logs out an user.                                                                */
+/*  user_logout                     Logs out a user.                                                                 */
 /*                                                                                                                   */
-/*  user_change_language            Changes the display language for an user.                                        */
-/*  user_change_mode                Changes the display mode for an user.                                            */
+/*  user_change_language            Changes the display language for a user.                                         */
+/*  user_change_mode                Changes the display mode for a user.                                             */
 /*                                                                                                                   */
 /*********************************************************************************************************************/
 // Close the lost account access popin if it is open upon loading the page
@@ -135,7 +135,7 @@ function user_login_attempt_process()
 
 
 /**
- * Logs out an user.
+ * Logs out a user.
  *
  * @returns {void}
  */
@@ -150,7 +150,7 @@ function user_logout()
 
 
 /**
- * Changes the display language for an user.
+ * Changes the display language for a user.
  *
  * @returns {void}
  */
@@ -165,7 +165,7 @@ function user_change_language()
 
 
 /**
- * Changes the display mode for an user.
+ * Changes the display mode for a user.
  *
  * @returns {void}
  */

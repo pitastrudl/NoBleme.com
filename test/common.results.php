@@ -62,7 +62,7 @@ if(substr(dirname(__FILE__),-8).basename(__FILE__) === str_replace("/","\\",subs
 /******************************************************************************************************************/ ?>
 
 <tr>
-  <td class="nowrap cellnoaltc" rowspan="33">
+  <td class="nowrap cellnoaltc" rowspan="48">
     functions_common.inc.php
   </td>
   <td class="nowrap">
@@ -320,5 +320,131 @@ if(substr(dirname(__FILE__),-8).basename(__FILE__) === str_replace("/","\\",subs
   </td>
   <td class="<?=$test_style['string_wrap_tags']?> text_white bold spaced">
     <?=$test_results['string_wrap_tags']['explanation']?>
+  </td>
+</tr>
+
+<tr>
+  <td class="nowrap">
+    page_section_selector
+  </td>
+  <td class="<?=$test_style['page_section_selector']?> text_white bold spaced">
+    <?=$test_results['page_section_selector']['explanation']?>
+  </td>
+</tr>
+
+<tr>
+  <td class="nowrap" rowspan="3">
+    private_message_send
+  </td>
+  <td class="<?=$test_style['private_message']?> text_white bold spaced">
+    <?=$test_results['private_message']['explanation']?>
+  </td>
+</tr>
+
+<tr>
+  <td class="<?=$test_style['private_message_system']?> text_white bold spaced">
+    <?=$test_results['private_message_system']['explanation']?>
+  </td>
+</tr>
+
+<tr>
+  <td class="<?=$test_style['private_message_admin']?> text_white bold spaced">
+    <?=$test_results['private_message_admin']['explanation']?>
+  </td>
+</tr>
+
+<tr>
+  <td class="nowrap">
+    flood_check
+  </td>
+  <td class="<?=$test_style['flood_check']?> text_white bold spaced">
+    <?=$test_results['flood_check']['explanation']?>
+  </td>
+</tr>
+
+<tr>
+  <td class="nowrap">
+    log_activity
+  </td>
+  <td class="<?=$test_style['recent_activity_log']?> text_white bold spaced">
+    <?=$test_results['recent_activity_log']['explanation']?>
+  </td>
+</tr>
+
+<tr>
+  <td class="nowrap">
+    log_activity_details
+  </td>
+  <td class="<?=$test_style['recent_activity_diff']?> text_white bold spaced">
+    <?=$test_results['recent_activity_diff']['explanation']?>
+  </td>
+</tr>
+
+<tr>
+  <td class="nowrap">
+    log_activity_purge_orphan_diffs
+  </td>
+  <td class="<?=$test_style['recent_activity_diff_purge']?> text_white bold spaced">
+    <?=$test_results['recent_activity_diff_purge']['explanation']?>
+  </td>
+</tr>
+
+<tr>
+  <td class="nowrap" rowspan="2">
+    log_activity_delete
+  </td>
+  <td class="<?=$test_style['recent_activity_delete']?> text_white bold spaced">
+    <?=$test_results['recent_activity_delete']['explanation']?>
+  </td>
+</tr>
+
+<tr>
+  <td class="<?=$test_style['recent_activity_restore']?> text_white bold spaced">
+    <?=$test_results['recent_activity_restore']['explanation']?>
+  </td>
+</tr>
+
+<tr>
+  <td class="nowrap">
+    schedule_task
+  </td>
+  <td class="<?=$test_style['schedule_task']?> text_white bold spaced">
+    <?=$test_results['schedule_task']['explanation']?>
+  </td>
+</tr>
+
+<tr>
+  <td class="nowrap">
+    schedule_task_update
+  </td>
+  <td class="<?=$test_style['schedule_task_update']?> text_white bold spaced">
+    <?=$test_results['schedule_task_update']['explanation']?>
+  </td>
+</tr>
+
+<tr>
+  <td class="nowrap">
+    schedule_task_delete
+  </td>
+  <td class="<?=$test_style['schedule_task_delete']?> text_white bold spaced">
+    <?=$test_results['schedule_task_delete']['explanation']?>
+  </td>
+</tr>
+
+<tr>
+  <td class="nowrap">
+    irc_send_message
+  </td>
+  <td class="<?=$test_style['irc_send_message']?> text_white bold spaced">
+    <?=$test_results['irc_send_message']['explanation']?>
+  </td>
+</tr>
+
+<tr>
+  <td class="nowrap">
+    discord_send_message
+  </td>
+  <td class="<?=$test_style['discord_send_message']?> text_white bold spaced">
+    <?=$test_results['discord_send_message']['explanation']?>
   </td>
 </tr>
