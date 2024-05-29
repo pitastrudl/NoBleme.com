@@ -122,15 +122,17 @@ function number_styling(  mixed $number                   ,
 /**
  * Returns the ordinal value of a number.
  *
- * @param   int     $number   The number for which we desire an ordinal value.
+ * @param   int     $number             The number for which we desire an ordinal value.
+ * @param   int     $lang     OPTIONAL  The language to use.
  *
- * @return  string            The ordinal value of the number.
+ * @return  string                      The ordinal value of the number.
  */
 
-function number_ordinal( int $number )
+function number_ordinal(  int     $number         ,
+                          string  $lang   = null  ) : string
 {
   // Fetch the user's language
-  $lang = user_get_language();
+  $lang = (isset($lang)) ? $lang : user_get_language();
 
   // Grab the last digit of the number
   $last_digit = $number % 10;

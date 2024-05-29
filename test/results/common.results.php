@@ -440,7 +440,7 @@ if(substr(dirname(__FILE__),-8).basename(__FILE__) === str_replace("/","\\",subs
   </td>
 </tr>
 
-<tr>
+<tr class="row_separator_dark">
   <td class="nowrap">
     discord_send_message
   </td>

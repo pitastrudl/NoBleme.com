@@ -42,7 +42,7 @@ $js = array('tests/suite');
 // Run tests
 
 // Define the list of elements which can be tested
-$test_categories = array('core', 'common');
+$test_categories = array('core', 'common', 'includes');
 
 // Initialize an array for test results
 $test_results = array();
@@ -51,7 +51,7 @@ $test_results = array();
 foreach($test_categories as $test_category)
 {
   if(form_fetch_element('dev_tests_'.$test_category, element_exists: true))
-    include_once './test/'.$test_category.'.tests.php';
+    include_once './test/tests/'.$test_category.'.tests.php';
 }
 
 
@@ -119,7 +119,10 @@ foreach($test_categories as $test_form_entry)
         <label class="label_inline" for="dev_tests_core"><?=__('dev_tests_select_core')?></label><br>
 
         <input type="checkbox" id="dev_tests_common" name="dev_tests_common"<?=$test_form_checked['common']?>>
-        <label class="label_inline" for="dev_tests_common"><?=__('dev_tests_select_common')?></label>
+        <label class="label_inline" for="dev_tests_common"><?=__('dev_tests_select_common')?></label><br>
+
+        <input type="checkbox" id="dev_tests_includes" name="dev_tests_includes"<?=$test_form_checked['includes']?>>
+        <label class="label_inline" for="dev_tests_includes"><?=__('dev_tests_select_includes')?></label>
 
       </div>
 
@@ -164,7 +167,7 @@ foreach($test_categories as $test_form_entry)
         foreach($test_categories as $test_category)
         {
           if(form_fetch_element('dev_tests_'.$test_category, element_exists: true))
-            include_once './test/'.$test_category.'.results.php';
+            include_once './test/results/'.$test_category.'.results.php';
         } ?>
 
       </tbody>
