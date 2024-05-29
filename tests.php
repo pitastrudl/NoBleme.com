@@ -42,7 +42,7 @@ $js = array('tests/suite');
 // Run tests
 
 // Define the list of elements which can be tested
-$test_categories = array('core', 'common', 'includes');
+$test_categories = array('core', 'common');
 
 // Initialize an array for test results
 $test_results = array();
@@ -120,9 +120,6 @@ foreach($test_categories as $test_form_entry)
 
         <input type="checkbox" id="dev_tests_common" name="dev_tests_common"<?=$test_form_checked['common']?>>
         <label class="label_inline" for="dev_tests_common"><?=__('dev_tests_select_common')?></label><br>
-
-        <input type="checkbox" id="dev_tests_includes" name="dev_tests_includes"<?=$test_form_checked['includes']?>>
-        <label class="label_inline" for="dev_tests_includes"><?=__('dev_tests_select_includes')?></label>
 
       </div>
 
