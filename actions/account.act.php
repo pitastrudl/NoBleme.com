@@ -466,17 +466,17 @@ function account_update_settings( string  $setting  ,
 
   // Update the session storage
   if($setting === 'show_nsfw_content')
-    $_SESSION['settings_nsfw'] = $value;
+    $_SESSION['settings_nsfw'] = (int)$value;
   else if($setting === 'hide_youtube')
-    $_SESSION['settings_privacy']['youtube'] = $value;
+    $_SESSION['settings_privacy']['youtube'] = (int)$value;
   else if($setting === 'hide_google_trends')
-    $_SESSION['settings_privacy']['trends'] = $value;
+    $_SESSION['settings_privacy']['trends'] = (int)$value;
   else if($setting === 'hide_discord')
-    $_SESSION['settings_privacy']['discord'] = $value;
+    $_SESSION['settings_privacy']['discord'] = (int)$value;
   else if($setting === 'hide_kiwiirc')
-    $_SESSION['settings_privacy']['kiwiirc'] = $value;
+    $_SESSION['settings_privacy']['kiwiirc'] = (int)$value;
   else if($setting === 'hide_from_activity')
-    $_SESSION['settings_privacy']['online'] = $value;
+    $_SESSION['settings_privacy']['online'] = (int)$value;
 
   // All went well
   return;

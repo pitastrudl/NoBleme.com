@@ -375,6 +375,8 @@ ___('dev_tests_select_core',      'EN', "Core functionalities");
 ___('dev_tests_select_core',      'FR', "Fonctionnalités essentielles");
 ___('dev_tests_select_common',    'EN', "Common functionalities");
 ___('dev_tests_select_common',    'FR', "Fonctionnalités communes");
+___('dev_tests_select_users',     'EN', "Users and accounts");
+___('dev_tests_select_users',     'FR', "Membres et comptes");
 ___('dev_tests_select_submit',    'EN', "Run tests");
 ___('dev_tests_select_submit',    'FR', "Exécuter les tests");
 

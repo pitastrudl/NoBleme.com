@@ -102,7 +102,7 @@ if(isset($_COOKIE['nobleme_memory']))
     }
 
     // Assign the user id to the session to log them in
-    $_SESSION['user_id'] = $dusers['t_uid'];
+    $_SESSION['user_id'] = (int)$dusers['t_uid'];
   }
 
   // If there's no match, log the user out
@@ -171,12 +171,12 @@ if(!$is_logged_in || !$user_id)
 
 // Store these values in the session
 $_SESSION['username']       = $username;
-$_SESSION['is_admin']       = $is_admin;
-$_SESSION['is_moderator']   = $is_moderator;
-$_SESSION['is_guest']       = $is_guest;
-$_SESSION['is_banned']      = $is_banned;
-$_SESSION['unread_pms']     = 0;
-$_SESSION['settings_nsfw']  = $settings_nsfw;
+$_SESSION['is_admin']       = (bool)$is_admin;
+$_SESSION['is_moderator']   = (bool)$is_moderator;
+$_SESSION['is_guest']       = (bool)$is_guest;
+$_SESSION['is_banned']      = (bool)$is_banned;
+$_SESSION['unread_pms']     = (int)0;
+$_SESSION['settings_nsfw']  = (int)$settings_nsfw;
 
 
 
@@ -1101,7 +1101,7 @@ function user_settings_nsfw() : int
                     fetch_row: true);
 
   // Save the user's nsfw settings in the session
-  $_SESSION['settings_nsfw'] = $dnsfw['user_nsfw'];
+  $_SESSION['settings_nsfw'] = (int)$dnsfw['user_nsfw'];
 
   // Return the user's nsfw settings
   return $dnsfw['user_nsfw'];
@@ -1122,11 +1122,11 @@ function user_settings_nsfw() : int
 function user_settings_privacy() : array
 {
   // By default, set all of the privacy values to 0
-  $privacy_youtube    = 0;
-  $privacy_trends     = 0;
-  $privacy_discord    = 0;
-  $privacy_kiwiirc    = 0;
-  $privacy_online     = 0;
+  $privacy_youtube  = 0;
+  $privacy_trends   = 0;
+  $privacy_discord  = 0;
+  $privacy_kiwiirc  = 0;
+  $privacy_online   = 0;
 
   // If the user is logged in, fetch their third party privacy settings
   if(user_is_logged_in())
@@ -1158,11 +1158,11 @@ function user_settings_privacy() : array
                           fetch_row: true);
 
       // Set them in the session
-      $_SESSION['settings_privacy'] = array(  'youtube' => $dprivacy['user_youtube']  ,
-                                              'trends'  => $dprivacy['user_trends']   ,
-                                              'discord' => $dprivacy['user_discord']  ,
-                                              'kiwiirc' => $dprivacy['user_kiwiirc']  ,
-                                              'online'  => $dprivacy['user_online']   );
+      $_SESSION['settings_privacy'] = array(  'youtube' => (int)$dprivacy['user_youtube']  ,
+                                              'trends'  => (int)$dprivacy['user_trends']   ,
+                                              'discord' => (int)$dprivacy['user_discord']  ,
+                                              'kiwiirc' => (int)$dprivacy['user_kiwiirc']  ,
+                                              'online'  => (int)$dprivacy['user_online']   );
 
       // Set the privacy values to those wanted by the user
       $privacy_youtube  = $dprivacy['user_youtube'];
@@ -1174,11 +1174,11 @@ function user_settings_privacy() : array
   }
 
   // Return those privacy settings, neatly folded in a cozy array
-  return array( 'youtube' => $privacy_youtube ,
-                'trends'  => $privacy_trends  ,
-                'discord' => $privacy_discord ,
-                'kiwiirc' => $privacy_kiwiirc ,
-                'online'  => $privacy_online  );
+  return array( 'youtube' => (int)$privacy_youtube ,
+                'trends'  => (int)$privacy_trends  ,
+                'discord' => (int)$privacy_discord ,
+                'kiwiirc' => (int)$privacy_kiwiirc ,
+                'online'  => (int)$privacy_online  );
 }
 
 
@@ -1220,7 +1220,7 @@ function user_get_birth_years() : array
 
   // Prepare the data
   for($i = 0; $row = query_row($qbirths); $i++)
-    $data[$i]['year'] = sanitize_output($row['u_year']);
+    $data[$i]['year'] = (int)$row['u_year'];
 
   // Add the number of rows to the data
   $data['rows'] = $i;
