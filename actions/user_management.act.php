@@ -420,7 +420,7 @@ function admin_account_change_rights( string  $username ,
   // Demotion to user
   if($level === 0)
   {
-    // Error: User is already an user
+    // Error: User is already a user
     if(!user_is_moderator($user_id) && !user_is_administrator($user_id))
       return __('admin_rights_error_user');
 

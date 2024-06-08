@@ -561,7 +561,7 @@ sudo systemctl restart httpd.service</pre>
 
   <p>
     Test that https is working properly on the website.<br>
-    Make sure to test logging in as an user.
+    Make sure to test logging in as a user.
   </p>
 
   <h5 class="bigpadding_top">

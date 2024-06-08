@@ -127,7 +127,7 @@ function users_get( ?int    $user_id  = NULL    ,
   $user_pronouns_fr       = $duser['u_pronouns_fr'];
   $user_pronouns_en       = $duser['u_pronouns_en'];
   $user_country           = $duser['u_country'];
-  $user_created           = $duser['u_created'];
+  $user_created           = $duser['u_created'] ?: 0;
   $user_activity          = $duser['u_activity'];
   $user_birthday          = $duser['u_birthday'];
   $user_birth_y           = ($duser['u_birth_y']) ? $duser['u_birth_y'] : '';
@@ -523,9 +523,10 @@ function users_list(  string  $sort_by          = ''      ,
     $data[$i]['username']   = ($row['data_type'] === 'guest')
                             ? sanitize_output($guest_name)
                             : sanitize_output($row['u_nick']);
-    $data[$i]['registered'] = sanitize_output(time_since($row['u_created']));
+    $created_time           = ($row['u_created']) ?: 0;
+    $data[$i]['registered'] = sanitize_output(time_since($created_time));
     $data[$i]['created']    = sanitize_output(date_to_text($row['u_created'], include_time: 2));
-    $user_activity          = ($row['u_activity']) ?: $row['u_created'];
+    $user_activity          = ($row['u_activity']) ?: $created_time;
     $data[$i]['activity']   = sanitize_output(time_since($user_activity));
     $data[$i]['active_at']  = sanitize_output(date_to_text($user_activity, include_time: 2));
     $data[$i]['last_page']  = ($lang === 'EN')

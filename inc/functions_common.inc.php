@@ -1081,7 +1081,7 @@ function private_message_send(  string  $title                    ,
  *
  * Keep in mind, since an error is being thrown, this interrupts the rest of the process of the page.
  *
- * @param   bool      $error_&age   (OPTIONAL)  If set, throws an error page.
+ * @param   bool      $error_page   (OPTIONAL)  If set, throws an error page.
  * @param   int|null  $user_id      (OPTIONAL)  Specifies the ID of the user to check - if null, current user.
  *
  * @return  bool                                Is the user allowed to post content to the website.
@@ -1540,27 +1540,32 @@ function irc_bot_send_message(  string  $message                          ,
                       logs_irc_bot.is_silenced  = '$silenced_mode'      ,
                       logs_irc_bot.is_manual    = '$manual_mode'        ");
 
-  // Stop the process if the bot is in silenced mode, but return 1 since the job was done as intended
+  // Stop the process if the bot is in silenced mode, but return false
   if($silenced_mode && !$ignore_silenced_mode)
-    return 1;
+    return false;
 
   // Fetch the path to the website's root
   $path = root_path();
 
+  // Determine the irc bot's file path
+  $ircbot_file_path = (isset($GLOBALS['irc_bot_file_name']))
+                    ? $path.$GLOBALS['irc_bot_file_name']
+                    : $path.'ircbot.txt';
+
   // If the file can be written in, then queue a message in it
-  if($ircbot_file = fopen($path.'ircbot.txt', "a"))
+  if($ircbot_file = fopen($ircbot_file_path, "a"))
   {
     // Depending on whether a channel is specifiied, the message is sent to the server or to a channel
     if(!$channel)
-      file_put_contents($path.'ircbot.txt', time()." ".substr($message,0,450).PHP_EOL, FILE_APPEND);
+      file_put_contents($ircbot_file_path, time()." ".substr($message,0,450).PHP_EOL, FILE_APPEND);
     else
-      file_put_contents($path.'ircbot.txt', time()." PRIVMSG ".$channel." :".substr($message,0,450).PHP_EOL, FILE_APPEND);
+      file_put_contents($ircbot_file_path, time()." PRIVMSG ".$channel." :".substr($message,0,450).PHP_EOL, FILE_APPEND);
 
     // Close the IRCbot file
     fclose($ircbot_file);
 
-    // Return 1 now that the job is done
-    return 1;
+    // Return true now that the job is done
+    return true;
   }
 
   // Otherwise we need to clarify that the file couldn't be written into
@@ -1572,8 +1577,8 @@ function irc_bot_send_message(  string  $message                          ,
             SET     logs_irc_bot.is_failed  = 1
             WHERE   logs_irc_bot.id         = '$log_id' ");
 
-    // Job failed, return 0
-    return 0;
+    // Job failed, return false
+    return false;
   }
 }
 
@@ -1593,19 +1598,19 @@ function irc_bot_send_message(  string  $message                          ,
  * @param   string  $message              The message to send.
  * @param   string  $channel  (OPTIONAL)  The channel to use ('main' 'mod' 'admin').
  *
- * @return  void
+ * @return  bool                          Whether the message has been sent through the Discord webhook
  */
 
 function discord_send_message(  string  $message          ,
-                                string  $channel = 'main' ) : void
+                                string  $channel = 'main' ) : bool
 {
   // Stop here if Discord is toggled off
   if(!$GLOBALS['enable_discord'])
-    return;
+    return false;
 
   // Stop here if Discord is silenced
   if(system_variable_fetch('discord_is_silenced'))
-    return;
+    return false;
 
   // Determine which webhook to use
   if($channel === 'admin')
@@ -1635,7 +1640,7 @@ function discord_send_message(  string  $message          ,
 
   // Stop here if the selected webhook is not set
   if(!$webhook)
-    return;
+    return false;
 
   // Encode the message
   $encoded_message = json_encode(['content' => $message], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_LINE_TERMINATORS | JSON_PRETTY_PRINT);
@@ -1656,4 +1661,7 @@ function discord_send_message(  string  $message          ,
 
   // Send the message through the webhook, ignore any errors
   @file_get_contents($webhook, false, $context);
+
+  // Return that the message has been sent
+  return true;
 }
