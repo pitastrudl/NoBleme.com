@@ -225,7 +225,7 @@ else
 // Check only if the user is logged in
 if($activity_user)
 {
-  $private_message_count      = isset($unread_pms) ?: 0;
+  $private_message_count      = isset($unread_pms) ? $unread_pms : 0;
   $private_message_count_css  = ($private_message_count && basename($_SERVER['PHP_SELF']) !== 'inbox.php') ? ' header_submenu_blink' : '';
 }
 
